@@ -1,0 +1,30 @@
+TO DO LIST:
+import random
+open test-word.txt and/or words.txt in python, using its path
+
+GAME FLOW:
+1. let player know the number of letters in mystery word
+-- either with a string (sentence) and/or by displaying blank mystery word with underscores
+2. prompt the player to guess a letter
+-- upper or lower case should not matter
+-- display message if player submits multiple characters, or submits a non-letter character
+
+
+// FROM CLASS //
+1. Open file, read it, make it into a list of words (slice on new-line). Words in the file are separated by newlines.
+
+2. Select a random word.
+
+3. Show number of letters in word, as underscores.
+
+4. Ask user to guess.
+    -- Keep a count of wrong guesses.
+        --If the guess is wrong, tell the user that it's wrong.
+    -- Keep track of the correct letters guessed.
+        -- If a guess is correct, display it like, B__BA_D
+
+5. Repeat step 4 until user reaches 8 guesses or they guess all the letters in the word correctly.
+    -- If user reaches 8 wrong guesses, break and tell them they are out of guesses and reveal the word.
+    -- If the user guesses the word, tell them they are right.
+
+6. Ask if they want to play again. If so, go back to step 2.
