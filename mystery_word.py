@@ -20,23 +20,26 @@ def play_game():
     game_letters = [*game_word]
     fixed_game_letters = list(set(game_letters))
     # turn list into set then back into list to remove duplicate letters
+    chosen_game_letters = []
     guessed_letters = []
     possible_letters = ALPHABET
 
     # GAME BOARD
-    # make some kind of border??
     display_guessed_letters = "Letters Guessed: " + str(guessed_letters)
     display_remaining_guesses = "Chances Left: " + str(remaining_guesses)
-    blank_word = len(game_word)*'_ '
+    first_blank_word = len(game_word)*'_ '
+    updated_blank_word = ''
     # print("Greeting/Response")
     # player_guess = input("Guess a letter! ")
 
     def refresh_game_board():
         print(display_guessed_letters)
         print(display_remaining_guesses)
-        print(blank_word)
+        print(updated_blank_word)
 
-    refresh_game_board()
+    print(display_guessed_letters)
+    print(display_remaining_guesses)
+    print(first_blank_word)
     print("Ready to play?")
     player_guess = input("Guess a letter! ").upper()
 
