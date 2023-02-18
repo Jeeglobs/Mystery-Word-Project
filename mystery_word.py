@@ -2,7 +2,7 @@ import random
 
 # should be able to delete lower case now that player_guess is capitalized when submitted
 ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-            'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+            'Z']
 
 
 def select_word(file):
@@ -43,27 +43,24 @@ def play_game():
     # will have a while loop that contains if loop
     # while remaining_guesses != 0 && game_letters != []
 
+    # do I need a for loop to make the letters show up on board like in class example??
+
     if player_guess not in possible_letters:
-        refresh_game_board()
+        # refresh_game_board()
         print("Try again. Guess ONE letter.")
     elif player_guess in fixed_game_letters:
         fixed_game_letters.remove(player_guess)
-        # print(fixed_game_letters)
+        guessed_letters.append(player_guess)
+        # refresh_game_board()
+        print("Great job! You got one!")
+    elif player_guess in guessed_letters:
+        print("You've already guessed that letter. Try again.")
+    else:
+        guessed_letters.append(player_guess)
+        remaining_guesses -= 1
+        # refresh_game_board
+        print("Oops! Try again!")
 
-
-# # # EXAMPLE FROM CLASS
-# def play_game():
-#     word = 'apple'
-#     wrong_guesses = ['b', 'd']
-#     right_guesses = ['a', 'p']
-
-#     game_board = ''
-#     for letter in word:
-#         if letter in right_guesses:
-#             game_board += letter + ' '
-#         else:
-#             game_board += '_ '
-#     print(game_board)
 
 # DO NOT CHANGE CODE BELOW THIS LINE !!!
 if __name__ == "__main__":
