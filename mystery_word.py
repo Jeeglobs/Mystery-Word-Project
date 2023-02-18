@@ -1,5 +1,6 @@
 import random
 
+# should be able to delete lower case now that player_guess is capitalized when submitted
 ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
             'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
@@ -7,10 +8,8 @@ ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 def select_word(file):
     with open(file) as opened_file:
         words_list = opened_file.read().splitlines()
-        # open words.txt, read it, split it into a list of strings
         game_word = random.choice(words_list).upper()
-        # randomly select a word and capitalize it
-    # print(game_word)
+    print(game_word)
     return game_word
 
 
@@ -19,12 +18,10 @@ def play_game():
     game_word = select_word('words.txt')
     remaining_guesses = 8
     game_letters = [*game_word]
-    # print(game_letters)
-    # turn into list of letters; letters are removed then added to guessed_letters
+    fixed_game_letters = list(set(game_letters))
+    # turn list into set then back into list to remove duplicate letters
     guessed_letters = []
-    # make list for guessed letters; letters are added when guessed
     possible_letters = ALPHABET
-    # list of the alphabet; if guess is not in this list, print a message to guess again with a letter
 
     # GAME BOARD
     # make some kind of border??
@@ -41,12 +38,18 @@ def play_game():
 
     refresh_game_board()
     print("Ready to play?")
-    input("Guess a letter! ")
+    player_guess = input("Guess a letter! ").upper()
 
-    if input not in possible_letters:
+    # will have a while loop that contains if loop
+    # while remaining_guesses != 0 && game_letters != []
+
+    if player_guess not in possible_letters:
         refresh_game_board()
         print("Try again. Guess ONE letter.")
-        input("Guess a letter! ")
+    elif player_guess in fixed_game_letters:
+        fixed_game_letters.remove(player_guess)
+        # print(fixed_game_letters)
+
 
 # # # EXAMPLE FROM CLASS
 # def play_game():
@@ -61,7 +64,6 @@ def play_game():
 #         else:
 #             game_board += '_ '
 #     print(game_board)
-
 
 # DO NOT CHANGE CODE BELOW THIS LINE !!!
 if __name__ == "__main__":
