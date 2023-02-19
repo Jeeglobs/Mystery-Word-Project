@@ -9,7 +9,7 @@ def select_word(file):
     with open(file) as opened_file:
         words_list = opened_file.read().splitlines()
         game_word = random.choice(words_list).upper()
-    print(game_word)
+    # print(game_word)
     return game_word
 
 
@@ -34,16 +34,12 @@ def play_game():
         return blank_word
 
     # OPENING GAME BOARD
+    print(' \n ')
+    print("Welcome to Mystery Word!")
     print("Letters Guessed: " + str(guessed_letters))
     print("Chances Left: " + str(remaining_guesses))
     update_word_display()
     print("Ready to play?")
-
-    # # PRINT LISTS
-    # print(remaining_guesses)
-    # print(guessed_letters)
-    # print(fixed_game_letters)
-    # print(chosen_game_letters)
 
     while remaining_guesses > 0:
         # for letter in game_word:
@@ -58,16 +54,16 @@ def play_game():
             fixed_game_letters.remove(player_guess)
             guessed_letters.append(player_guess)
             chosen_game_letters.append(player_guess)
-
-            if len(fixed_game_letters) == 0:
-                print("You win!")
-                break
-            else:
-                print(' \n ')
+            print(' \n ')
             print("Letters Guessed: " + str(guessed_letters))
             print("Chances Left: " + str(remaining_guesses))
             update_word_display()
-            print("Great job! You got one!")
+
+            if len(fixed_game_letters) == 0:
+                print("YOU WIN!")
+                break
+            else:
+                print("Great job! You got one!")
 
         else:
             guessed_letters.append(player_guess)
@@ -79,9 +75,13 @@ def play_game():
             print("Oops! Try again!")
 
     else:
+        print(' \n ')
+        print("Letters Guessed: " + str(guessed_letters))
+        print("Chances Left: " + str(remaining_guesses))
+        print("The mystery word was: " + game_word)
         print("YOU LOSE!")
 
-    play_again = input("Would you like to play again Y/N? ")
+    play_again = input("Would you like to play again Y/N? ").upper()
     if play_again == 'Y':
         play_game()
 
