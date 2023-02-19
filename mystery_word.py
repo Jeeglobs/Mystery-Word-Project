@@ -19,50 +19,59 @@ def play_game():
     remaining_guesses = 8
     game_letters = [*game_word]
     fixed_game_letters = list(set(game_letters))
-    # turn list into set then back into list to remove duplicate letters
     chosen_game_letters = []
     guessed_letters = []
     possible_letters = ALPHABET
 
-    # GAME BOARD
-    display_guessed_letters = "Letters Guessed: " + str(guessed_letters)
-    display_remaining_guesses = "Chances Left: " + str(remaining_guesses)
-    first_blank_word = len(game_word)*'_ '
-    updated_blank_word = ''
-    # print("Greeting/Response")
-    # player_guess = input("Guess a letter! ")
+    def update_word_display():
+        blank_word = ''
+        for letter in game_word:
+            if letter in chosen_game_letters:
+                blank_word += letter + ' '
+            else:
+                blank_word += '_ '
+        print(blank_word)
+        return blank_word
 
-    def refresh_game_board():
-        print(display_guessed_letters)
-        print(display_remaining_guesses)
-        print(updated_blank_word)
-
-    print(display_guessed_letters)
-    print(display_remaining_guesses)
-    print(first_blank_word)
+    # OPENING GAME BOARD
+    print("Letters Guessed: " + str(guessed_letters))
+    print("Chances Left: " + str(remaining_guesses))
+    update_word_display()
     print("Ready to play?")
-    player_guess = input("Guess a letter! ").upper()
 
-    # will have a while loop that contains if loop
-    # while remaining_guesses != 0 && game_letters != []
+    # # PRINT LISTS
+    # print(remaining_guesses)
+    # print(guessed_letters)
+    # print(fixed_game_letters)
+    # print(chosen_game_letters)
 
-    # do I need a for loop to make the letters show up on board like in class example??
+    # while remaining_guesses > 0:
+    for letter in game_word:
+        player_guess = input("Guess a letter! ").upper()
+        if player_guess not in possible_letters:
+            print("Your guess must be a single letter. Try again!")
 
-    if player_guess not in possible_letters:
-        # refresh_game_board()
-        print("Try again. Guess ONE letter.")
-    elif player_guess in fixed_game_letters:
-        fixed_game_letters.remove(player_guess)
-        guessed_letters.append(player_guess)
-        # refresh_game_board()
-        print("Great job! You got one!")
-    elif player_guess in guessed_letters:
-        print("You've already guessed that letter. Try again.")
-    else:
-        guessed_letters.append(player_guess)
-        remaining_guesses -= 1
-        # refresh_game_board
-        print("Oops! Try again!")
+        elif player_guess in guessed_letters:
+            print("You've already guessed that letter. Try again!")
+
+        elif player_guess in fixed_game_letters:
+            fixed_game_letters.remove(player_guess)
+            guessed_letters.append(player_guess)
+            chosen_game_letters.append(player_guess)
+            print(' \n ')
+            print("Letters Guessed: " + str(guessed_letters))
+            print("Chances Left: " + str(remaining_guesses))
+            update_word_display()
+            print("Great job! You got one!")
+
+        else:
+            guessed_letters.append(player_guess)
+            remaining_guesses -= 1
+            print(' \n ')
+            print("Letters Guessed: " + str(guessed_letters))
+            print("Chances Left: " + str(remaining_guesses))
+            update_word_display()
+            print("Oops! Try again!")
 
 
 # DO NOT CHANGE CODE BELOW THIS LINE !!!
