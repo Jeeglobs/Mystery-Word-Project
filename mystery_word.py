@@ -58,7 +58,12 @@ def play_game():
             fixed_game_letters.remove(player_guess)
             guessed_letters.append(player_guess)
             chosen_game_letters.append(player_guess)
-            print(' \n ')
+
+            if len(fixed_game_letters) == 0:
+                print("You win!")
+                break
+            else:
+                print(' \n ')
             print("Letters Guessed: " + str(guessed_letters))
             print("Chances Left: " + str(remaining_guesses))
             update_word_display()
