@@ -45,8 +45,8 @@ def play_game():
     # print(fixed_game_letters)
     # print(chosen_game_letters)
 
-    # while remaining_guesses > 0:
-    for letter in game_word:
+    while remaining_guesses > 0:
+        # for letter in game_word:
         player_guess = input("Guess a letter! ").upper()
         if player_guess not in possible_letters:
             print("Your guess must be a single letter. Try again!")
@@ -72,6 +72,13 @@ def play_game():
             print("Chances Left: " + str(remaining_guesses))
             update_word_display()
             print("Oops! Try again!")
+
+    else:
+        print("YOU LOSE!")
+
+    play_again = input("Would you like to play again Y/N? ")
+    if play_again == 'Y':
+        play_game()
 
 
 # DO NOT CHANGE CODE BELOW THIS LINE !!!
