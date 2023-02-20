@@ -43,9 +43,16 @@ def play_game():
     guessed_letters = []
     possible_letters = ALPHABET
 
+    # made this to simplify code
+    def update_game_board():
+        print('\n')
+        print("Letters Guessed: " + str(guessed_letters))
+        print("Chances Left: " + str(remaining_guesses))
+
     # tried to figure out how to have this function outside of play_game and call it
     def update_word_display():
         blank_word = ''
+        # is game_word connected to linr 38?
         for letter in game_word:
             if letter in chosen_game_letters:
                 blank_word += letter + ' '
@@ -54,16 +61,11 @@ def play_game():
         print(blank_word)
         return blank_word
 
-    # made this to simplify code
-    def update_game_board():
-        print(' \n ')
-        print("Letters Guessed: " + str(guessed_letters))
-        print("Chances Left: " + str(remaining_guesses))
-
     # OPENING GAME BOARD
+    print('\n')
+    print("Welcome to Mystery Word!")
     update_game_board()
     update_word_display()
-    print("Welcome to Mystery Word!")
     print("Ready to play?")
 
     while remaining_guesses > 0:
@@ -96,6 +98,7 @@ def play_game():
 
     else:
         update_game_board()
+        update_word_display()
         print("The mystery word was: " + game_word)
         print("YOU LOSE!")
 
