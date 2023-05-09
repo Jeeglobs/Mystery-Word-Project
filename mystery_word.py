@@ -1,8 +1,8 @@
 import random
 
 # list of capitalized letters; will be used as possible_letters
-ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-            'Z']
+ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 # # SEPARATE WORDS INTO LISTS BASED ON LENGTH
 # def create_words_lists(file):
@@ -28,7 +28,6 @@ def select_word(file):
     with open(file) as opened_file:
         words_list = opened_file.read().splitlines()
         game_word = random.choice(words_list).upper()
-    # print(game_word)
     return game_word
 
 
@@ -38,7 +37,9 @@ def play_game():
     game_word = select_word('words.txt')
     remaining_guesses = 8
     game_letters = [*game_word]
+    # print(game_letters)
     fixed_game_letters = list(set(game_letters))
+    # print(fixed_game_letters)
     chosen_game_letters = []
     guessed_letters = []
     possible_letters = ALPHABET
@@ -49,10 +50,8 @@ def play_game():
         print("Letters Guessed: " + str(guessed_letters))
         print("Chances Left: " + str(remaining_guesses))
 
-    # tried to figure out how to have this function outside of play_game and call it
     def update_word_display():
         blank_word = ''
-        # is game_word connected to linr 38?
         for letter in game_word:
             if letter in chosen_game_letters:
                 blank_word += letter + ' '
